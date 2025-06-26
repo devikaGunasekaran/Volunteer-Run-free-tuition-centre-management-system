@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Test Marks</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f9a825, #ffeb3b);
+            color: #333;
+        }
+
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .container {
+            margin: 20px auto;
+            max-width: 800px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th {
+            background: linear-gradient(135deg, #f9a825, #ffeb3b);
+            color: #000;
+            padding: 10px;
+        }
+
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>Update Test Marks</header>
+    <div class="container">
+        <!-- Criteria Selection Form -->
+        <form id="criteria-form">
+            <label for="zone">Zone</label>
+            <select id="zone" required>
+                <option value="" disabled selected>Select Zone</option>
+                <option value="1">Zone 1</option>
+                <option value="2">Zone 2</option>
+                <option value="3">Zone 3</option>
+            </select>
+
+            <label for="medium">Medium</label>
+            <select id="medium" required>
+                <option value="" disabled selected>Select Medium</option>
+                <option value="English">English</option>
+                <option value="Tamil">Tamil</option>
+            </select>
+
+            <label for="subject_id">Subject</label>
+            <select name="subject_id" id="subject" required>
+                <option value="1" {% if subject == '1' %}selected{% endif %}>Mathematics</option>
+                <option value="2" {% if subject == '2' %}selected{% endif %}>Physics</option>
+                <option value="3" {% if subject == '3' %}selected{% endif %}>Chemistry</option>
+                <option value="4" {% if subject == '4' %}selected{% endif %}>Accountancy</option>
+                <option value="5" {% if subject == '5' %}selected{% endif %}>Commerce</option>
+            </select>
+
+            <!-- Test Date and Test Type Inputs (Now only entered once) -->
+            <label for="test-date">Test Date</label>
+            <input type="date" id="test-date" required>
+
+            <label for="test-type">Test Type</label>
+            <input type="text" id="test-type" placeholder="Enter Test Type" required>
+
+            <button type="button" onclick="fetchStudents()">Fetch Students</button>
+        </form>
+
+        <!-- Table to Display Students and Enter Marks -->
+        <table id="students-table" class="hidden">
+            <thead>
+                <tr>
+                    <th>KKID</th>
+                    <th>Name</th>
+                    <th>Test Marks</th>
+                </tr>
+            </thead>
+            <tbody id="students-tbody">
+                <!-- Rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <button id="submit-btn" class="hidden" onclick="submitTestMarks()">Submit Marks</button>
+    </div>
+
+    <footer>&copy; 2024 Test Volunteer Portal</footer>
+
+    <script>
+        function fetchStudents() {
+            const zone = document.getElementById('zone').value;
+            const medium = document.getElementById('medium').value;
+            const subject_id = document.getElementById('subject').value;  // Correct ID
+            const test_date = document.getElementById('test-date').value; // Get test date
+            const test_type = document.getElementById('test-type').value; // Get test type
+
+            // Check if test date and test type are entered
+            if (!test_date || !test_type) {
+                alert('Please enter both Test Date and Test Type.');
+                return;
+            }
+
+            fetch('/fetch_students', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ zone, medium, subject_id })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById('students-table');
+                const tbody = document.getElementById('students-tbody');
+                const submitBtn = document.getElementById('submit-btn');
+
+                // Clear previous rows
+                tbody.innerHTML = '';
+
+                if (data.length > 0) {
+                    table.classList.remove('hidden');
+                    submitBtn.classList.remove('hidden');
+
+                    // Add rows for each student
+                    data.forEach(student => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${student.kkid}</td>
+                            <td>${student.name}</td>
+                            <td><input type="number" data-kkid="${student.kkid}" data-subject-id="${subject_id}" class="marks-input" placeholder="Enter Marks" required></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                } else {
+                    table.classList.add('hidden');
+                    submitBtn.classList.add('hidden');
+                    alert('No students found for the given criteria.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function submitTestMarks() {
+            const marksData = [];
+            const inputs = document.querySelectorAll('.marks-input');
+            const test_date = document.getElementById('test-date').value; // Get test date
+            const test_type = document.getElementById('test-type').value; // Get test type
+            const subject_id = document.getElementById('subject').value;  // Correct ID
+
+            inputs.forEach(input => {
+                const kkid = input.getAttribute('data-kkid');
+                const test_marks = input.value;
+
+                if (test_marks) { // Include test marks check
+                    marksData.push({ kkid, subject_id, test_marks, test_date, test_type });
+                }
+            });
+
+            fetch('/submit_test_marks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ marks: marksData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                document.getElementById('students-table').classList.add('hidden');
+                document.getElementById('submit-btn').classList.add('hidden');
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

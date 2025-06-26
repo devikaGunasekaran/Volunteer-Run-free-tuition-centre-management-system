@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admission</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
+            color: #333;
+        }
+        /* Navigation Bar Styles */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #020713;
+            color: white;
+            padding: 20px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav div {
+            display: flex;
+            align-items: center;
+        }
+        nav h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        .maatram-foundation {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #cbd5e0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background-color: #4a5568;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 0;
+        }
+
+        /* Main Content Styles */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 40px;
+            gap: 20px;
+        }
+        .left-section, .right-section {
+            border-radius: 15px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        .left-section:hover, .right-section:hover {
+            transform: translateY(-5px);
+        }
+        .left-section {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .left-section h2 {
+            font-size: 24px;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        .left-section p {
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+        .left-section a {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #63b3ed, #3182ce);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+        .left-section a:hover {
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+        }
+        .right-section {
+            flex: 1;
+        }
+        .right-section h2 {
+            font-size: 24px;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+        .right-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .right-section ul li {
+            margin-bottom: 10px;
+            padding: 15px;
+            background: linear-gradient(135deg, #edf2f7, #e2e8f0);
+            border-radius: 10px;
+            font-weight: bold;
+            color: #2d3748;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        .right-section ul li:hover {
+            background: linear-gradient(135deg, #cbd5e0, #a0aec0);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Section Styles */
+       .contact {
+        background-color: #020713;
+            color: white;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px 20px;
+            border-radius: 10px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+        .contact-info div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-info img {
+            width: 30px;
+            height: auto;
+        }
+        .phone, .email {
+            font-size: 18px;
+        }
+        .phone h4, .email h3 {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <img src="static/img/image.jpg" alt="Logo" class="logo">
+            <div>
+                <h1>Karpom Karpipom</h1>
+                <div class="maatram-foundation">Maatram Foundation</div>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('admission') }}">Admissions</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('signin') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <h2>Admission Open</h2>
+            <p>We are now accepting applications for the upcoming academic year. Apply now to secure your place!</p>
+            <a href="{{ url_for('admission_form') }}">Fill Admission Form</a>
+
+        </div>
+        <!-- Right Section -->
+        <div class="right-section">
+            <h2>Subjects Offered</h2>
+            <ul>
+                <li>Mathematics</li>
+                <li>Physics</li>
+                <li>Chemistry</li>
+                <li>Economics</li>
+                <li>Commerce</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact">
+        <h1>Contact Us</h1>
+        <div class="contact-info">
+            <div class="phone">
+                <img src="static/img/phone.png" alt="Phone Icon">
+                <h4>+91 98754 45678</h4>
+            </div>
+            <div class="email">
+                <img src="static/img/mail.png" alt="Email Icon">
+                <h3>kk@gmail.com</h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Access Portal</title>
+    <style>
+        /* Reset styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Light Gray Background */
+        }
+
+        /* Header Section */
+        header {
+            background-color: #000000; /* Black Background */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* Button Section */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 75vh;
+        }
+
+        /* Buttons Styling */
+        .btn {
+            display: inline-block;
+            width: 200px;
+            margin: 15px 0;
+            padding: 15px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: #ffffff; /* White Text */
+            background: linear-gradient(to bottom, #007bff, #004aad); /* Blue Gradient */
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(to bottom, #004aad, #002766); /* Darker Blue Gradient on Hover */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Button Text Shadow */
+        .btn span {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        WELCOME TO TUTOR ACCESS PORTAL
+    </header>
+
+    <!-- Button Section -->
+    <div class="button-container">
+        <!-- Link to Volunteer Profile -->
+        <a href="{{ url_for('volunteer_profile', volunteers_kkid=volunteer.volunteers_kkid, volunteer_type='tutor') }}" class="btn">
+            <span>Tutor Profile</span>
+        </a>
+        <a href="{{ url_for('attendance') }}" class="btn">
+            <span>Enter Attendance</span>
+        </a>
+        <a href="{{ url_for('update_status') }}" class="btn">Portion Status Update</a>
+        
+
+        
+    
+        
+            
+    </div>
+</body>
+</html>

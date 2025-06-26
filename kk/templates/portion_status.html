@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portion Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f9a825, #ffeb3b);
+            color: #333;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f9a825;
+            color: white;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        /* Status Colors */
+        .completed {
+            background-color: #4caf50; /* Green */
+            color: white;
+        }
+
+        .in-progress {
+            background-color: #ff9800; /* Orange */
+            color: white;
+        }
+
+        .not-started {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Portion Status</h1>
+
+    <!-- Table to display portion status -->
+    <table>
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Medium</th>
+                <th>Volunteer KKID</th>
+                <th>Zone</th>
+                <th>Completion Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for portion in portions %}
+                <tr>
+                    <td>{{ portion.subject_name }}</td>  <!-- Display the subject name -->
+                    <td>{{ portion.medium }}</td>
+                    <td>{{ portion.volunteers_kkid }}</td>
+                    <td>{{ portion.zone }}</td>
+                    <td class="{% if portion.completionStatus == 'Completed' %}completed{% elif portion.completionStatus == 'In Progress' %}in-progress{% elif portion.completionStatus == 'Not Started' %}not-started{% endif %}">
+                        {{ portion.completionStatus }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

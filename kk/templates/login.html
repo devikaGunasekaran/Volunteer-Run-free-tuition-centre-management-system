@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In - Karpom Karpipom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #020713;
+            color: white;
+            padding: 20px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        nav div {
+            display: flex;
+            align-items: center;
+        }
+        nav h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        .maatram-foundation {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #cbd5e0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background-color: #4a5568;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 0;
+        }
+
+        /* Log In Form */
+        .login-container {
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow */
+            transition: box-shadow 0.3s ease;
+        }
+        .form-group select {
+            padding: 10px;
+        }
+        .form-group button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow */
+            transition: box-shadow 0.3s ease;
+        }
+        .form-group button:hover {
+            background-color: #444;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Hover or focus shadow effect */
+            outline: none; /* Remove the default focus outline */
+        }
+        .form-group input:focus, .form-group select:focus {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Hover or focus shadow effect */
+    outline: none; /* Remove the default focus outline */
+}
+
+        .tabs {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 10px; /* Adds spacing between the buttons */
+    margin-bottom: 20px; /* Adds spacing below the tabs */
+}
+
+
+.tabs button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f4f7fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Default shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.tabs button:hover {
+    background-color: #e0e7ef;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hover shadow effect */
+}
+
+.tabs button.active {
+    background-color: #333;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Active shadow effect */
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <img src="static/img/image.jpg" alt="Logo" class="logo">
+            <div>
+                <h1>Karpom Karpipom</h1>
+                <div class="maatram-foundation">Maatram Foundation</div>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('admission') }}">Admissions</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('signin') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- log In Form -->
+    <div class="login-container">
+        <h2>Log In</h2>
+        <div class="tabs">
+            <button class="active" id="student-tab">Student</button>
+            <button id="volunteer-tab">Volunteer</button>
+        </div>
+
+        <!-- Student Form -->
+        <form id="student-form" class="form" action="/login" method="POST">
+            <input type="hidden" name="user_type" value="student">
+            <div class="form-group">
+                <label for="student-kkid">KKID</label>
+                <input type="text" id="student-kkid" name="kkid" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+
+        <!-- Volunteer Form -->
+        <form id="volunteer-form" class="form" action="/login" method="POST" style="display: none;">
+            <input type="hidden" name="user_type" value="volunteer">
+            <div class="form-group">
+                <label for="volunteer-kkid">KKID</label>
+                <input type="text" id="volunteer-kkid" name="kkid" required>
+            </div>
+            <div class="form-group">
+                <label for="volunteer_type">Volunteer Type</label>
+                <select id="volunteer_type" name="volunteer_type" required>
+                    <option value="tutor">Tutor</option>
+                    <option value="test-conducting-team">Test Conducting Team</option>
+                    <option value="assignment">Assignment</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Log In</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Toggle between student and volunteer forms
+        document.getElementById('student-tab').addEventListener('click', function() {
+            document.getElementById('student-form').style.display = 'block';
+            document.getElementById('volunteer-form').style.display = 'none';
+            document.getElementById('student-tab').classList.add('active');
+            document.getElementById('volunteer-tab').classList.remove('active');
+        });
+
+        document.getElementById('volunteer-tab').addEventListener('click', function() {
+            document.getElementById('student-form').style.display = 'none';
+            document.getElementById('volunteer-form').style.display = 'block';
+            document.getElementById('volunteer-tab').classList.add('active');
+            document.getElementById('student-tab').classList.remove('active');
+        });
+    </script>
+
+</body>
+</html>

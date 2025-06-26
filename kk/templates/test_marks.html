@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Marks for KKID: {{ kkid }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: black;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-bottom: 3px solid #fff;
+        }
+        header h1 {
+            font-size: 36px;
+            margin: 0;
+            color: white;
+        }
+        #marks-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f9a825, #ffeb3b); /* Apply gradient to the table */
+        }
+        table, th, td {
+            border: 1px solid #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f9a825;
+        }
+        td {
+            background-color: #fbc02d;
+        }
+        .error-message {
+            text-align: center;
+            font-size: 18px;
+            color: #f44336;
+        }
+        .back-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button a {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        .back-button a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Test Marks for KKID: {{ kkid }}</h1>
+    </header>
+
+    <div id="marks-container">
+        <!-- Test Marks table will be populated here -->
+
+        {% if student_marks %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject ID</th>
+                    <th>Test Marks</th>
+                    <th>Test Date</th>
+                    <th>Test Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for mark in student_marks %}
+                <tr>
+                    <td>{{ mark.subject_id }}</td>
+                    <td>{{ mark.test_marks }}</td>
+                    <td>{{ mark.test_date }}</td>
+                    <td>{{ mark.test_type }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="error-message">No test marks found for the provided KKID.</p>
+        {% endif %}
+    </div>
+
+    <div class="back-button">
+        <a href="index.html">Back to Home</a>
+    </div>
+
+</body>
+</html>

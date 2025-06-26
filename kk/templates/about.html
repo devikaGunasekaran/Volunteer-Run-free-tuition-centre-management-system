@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About KK</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: #f4f7fa;
+            color: #333;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #020713;
+            color: white;
+            padding: 20px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav div {
+            display: flex;
+            align-items: center;
+        }
+        nav h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        .maatram-foundation {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #cbd5e0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background-color: #4a5568;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 0;
+        }
+        
+
+        /* Content Section */
+        .content-container {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 40px 20px;
+            border-radius: 10px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+        h2, h3 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        .alumni-details {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f5f8;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 2s ease;
+        }
+        .alumni-details p {
+            font-size: 16px;
+            color: #555;
+            line-height: 1.8;
+        }
+        .contact {
+            background-color: #020713;
+            color: white;
+            padding: 50px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 40px 20px;
+            border-radius: 10px;
+            animation: bounceIn 2s;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .contact-info div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInUp 1.5s ease;
+        }
+        .contact-info img {
+            width: 30px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .contact-info img:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        .phone, .email {
+            font-size: 18px;
+        }
+        .phone h4, .email h3 {
+            margin-top: 10px;
+            font-weight: normal;
+        }
+        .contact-info h3 {
+            color: #f1f5f8;
+        }
+        .contact-info h4 {
+            color: #f1f5f8;
+        }
+         /* Animations */
+         @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes rotateLogo {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes bounceIn {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <img src="static/img/image.jpg" alt="Logo" class="logo">
+            <div>
+                <h1>Karpom Karpipom</h1>
+                <div class="maatram-foundation">Maatram Foundation</div>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('admission') }}">Admissions</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('signin') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Us Section -->
+    <div class="content-container">
+        <h2>Karpom Karpipom</h2>
+        <p>This project aims to identify committed students who, despite originating from underprivileged backgrounds and not pursuing higher education, harbor ambitious academic goals. The initiative is designed to assist them in excelling in their board exams. Over the years, during the admission process of Maatram Foundation, it became evident that many young students encountered difficulties in achieving high marks due to a lack of qualified teachers, insufficient infrastructure, and, in numerous cases, challenging domestic circumstances. Consequently, our goal is to elevate their education by engaging former students as mentors and educators through alumni volunteers, thus bridging the existing gap. This initiative will not only help them excel in their board exams but also provide them with an outstanding opportunity to pursue higher education through Maatram Foundation. The entire initiative is managed and overseen by the Maatram Alumni Association.</p>
+
+        <!-- Alumni Details Section -->
+        <div class="alumni-details">
+            <h3>Founder</h3>
+            <p>Mr. Sarath, an alumni of Maatram Foundation, is the visionary behind Karpom Karpipom (KK). Currently pursuing his PG degree at IIT Madras, he started KK with a mission to help students from underprivileged backgrounds succeed academically. Mr. Sarath’s journey from being a student at Maatram Foundation to becoming a core team member of the foundation serves as a shining example for all the students. His dedication and hard work inspire many young minds to chase their academic dreams, no matter the circumstances. His story is proof that with the right guidance and support, students can achieve great heights and inspire others in turn.</p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact">
+        <h1>Contact Us</h1>
+        <div class="contact-info">
+            <div class="phone">
+                <img src="static/img/phone.png" alt="Phone Icon">
+                <h4>+91 98754 45678</h4>
+            </div>
+            <div class="email">
+                <img src="static/img/mail.png" alt="Email Icon">
+                <h3>kk@gmail.com</h3>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

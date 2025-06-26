@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Portion Status</title>
+    <style>
+        /* Background gradient */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f9a825, #ffeb3b);
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #f9a825;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Update Portion Status</h1>
+
+    <!-- Form to update portion status -->
+    <div class="form-container">
+        <form method="POST">
+            <!-- Subject Section -->
+            <div>
+                <label for="subject_id">Subject</label>
+                <select name="subject_id" id="subject_id" required>
+                    <option value="1">Mathematics</option>
+                    <option value="2">Physics</option>
+                    <option value="3">Chemistry</option>
+                    <option value="4">Commerce</option>
+                    <option value="5">Accountancy</option>
+                </select>
+            </div>
+
+            <!-- Medium Section -->
+            <div>
+                <label for="medium">Medium</label>
+                <select name="medium" id="medium" required>
+                    <option value="" disabled selected>Select Medium</option>
+                    <option value="English">English</option>
+                    <option value="Tamil">Tamil</option>
+                </select>
+            </div>
+
+            <!-- Volunteer KKID -->
+            <div>
+                <label for="volunteers_kkid">Volunteer KKID</label>
+                <input type="text" name="volunteers_kkid" id="volunteers_kkid" required>
+            </div>
+
+            <!-- Zone Section -->
+            <div>
+                <label for="zone">Zone</label>
+                <input type="number" name="zone" id="zone" required>
+            </div>
+
+            <!-- Completion Status Section -->
+            <div>
+                <label for="completion_status">Completion Status</label>
+                <select name="completion_status" id="completion_status" required>
+                    <option value="" disabled selected>Select Completion Status</option>
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Not Started">Not Started</option>
+                </select>
+            </div>
+            
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit">Update Status</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

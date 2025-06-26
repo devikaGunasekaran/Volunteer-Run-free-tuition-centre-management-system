@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Attendance</title>
+    <script>
+        async function fetchStudents() {
+            // Get selected values from form fields
+            const zone = document.getElementById('zone').value;
+            const medium = document.getElementById('medium').value;
+            const subject_id = document.getElementById('subject_id').value;
+
+            // Make an AJAX POST request to fetch students
+            const response = await fetch('/fetch_students', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ zone, medium, subject_id })
+            });
+
+            const students = await response.json();
+
+            // Update the student table
+            const tbody = document.getElementById('attendance-list');
+            tbody.innerHTML = '';
+
+            if (students.length > 0) {
+                students.forEach(student => {
+                    const row = `
+                        <tr>
+                            <td>${student.name}</td>
+                            <td><input type="checkbox" name="attendance_${student.kkid}" value="attended"></td>
+                        </tr>`;
+                    tbody.innerHTML += row;
+                });
+            } else {
+                tbody.innerHTML = '<tr><td colspan="2">No students found for the selected criteria.</td></tr>';
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f9a825, #ffeb3b);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #f9a825;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        select, input[type="date"], input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            background-color: #f9a825;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ffeb3b;
+        }
+
+        .attendance-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .attendance-table th, .attendance-table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .attendance-table th {
+            background-color: #f9a825;
+            color: white;
+        }
+
+        .attendance-table td input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Attendance</h1>
+        <form action="/add_attendance" method="POST">
+            <div>
+                <label for="zone">Zone</label>
+                <select name="zone" id="zone">
+                    <option value="1">Zone 1</option>
+                    <option value="2">Zone 2</option>
+                    <option value="3">Zone 3</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="medium">Medium</label>
+                <select name="medium" id="medium">
+                    <option value="Tamil">Tamil</option>
+                    <option value="English">English</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="subject_id">Subject</label>
+                <select name="subject_id" id="subject_id">
+                    <option value="1">Mathematics</option>
+                    <option value="2">Physics</option>
+                    <option value="3">Chemistry</option>
+                    <option value="4">Commerce</option>
+                    <option value="5">Accountancy</option>
+                </select>
+            </div>
+
+            <button type="button" onclick="fetchStudents()">Fetch Students</button>
+
+            <table class="attendance-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Attendance</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-list">
+                    <tr>
+                        <td colspan="2">No students found. Please select criteria and fetch.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div>
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" required>
+            </div>
+
+            <div>
+                <label for="kkid">Tutor KKID</label>
+                <input type="text" name="kkid" id="kkid" required>
+            </div>
+
+            <button type="submit">Submit Attendance</button>
+        </form>
+    </div>
+</body>
+</html>

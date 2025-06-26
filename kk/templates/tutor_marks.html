@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class KK Test Marks Overview</title>
+    <style>
+        /* Reset styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5; /* Light Gray Background */
+        }
+
+        /* Header Section */
+        header {
+            background-color: #000000; /* Black Background */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f9a825, #ffeb3b); /* Gradient background */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #000000; /* Black Background for headers */
+            color: white;
+        }
+
+        td {
+            background-color: white; /* White Background for table cells */
+        }
+
+        /* Chart Section */
+        .chart-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Button Section */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #f9a825; /* Hover effect */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        Tutor Class KK Test Marks Overview
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+
+       
+
+       
+
+        <!-- Table for KK Test Marks -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Marks</th>
+                </tr>
+            </thead>
+            <tbody id="marksTable">
+                {% for student, marks in zip(student_names, all_marks[tests[0]]) %}
+                <tr>
+                    <td>{{ student }}</td>
+                    <td>{{ marks }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Button to Update or View Marks -->
+        <div class="button-container">
+            <a href="#" class="btn">Update Marks</a>
+        </div>
+    </div>
+
+    
+    <script>
+        
+
+        // Data passed from the backend via Flask context
+        const studentNames = {{ student_names | tojson }};
+        const tests = {{ tests | tojson }};
+        const allMarks = {{ all_marks | tojson }};  // Dictionary with test names as keys and marks as values
+
+    </script>
+
+</body>
+</html>

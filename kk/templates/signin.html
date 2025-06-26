@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Karpom Karpipom</title>
+    <style>
+        /* Existing styles remain the same */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f7fa;
+            color: #333;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #020713;
+            color: white;
+            padding: 20px 50px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav div {
+            display: flex;
+            align-items: center;
+        }
+        nav h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        .maatram-foundation {
+            font-size: 18px;
+            margin-left: 10px;
+            color: #cbd5e0;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            position: relative;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        nav ul li a:hover {
+            background-color: #4a5568;
+        }
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 0;
+        }
+        
+
+        /* Sign In Form */
+        .signin-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .form-group input, 
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: box-shadow 0.3s ease;
+}
+.form-group input:focus, 
+.form-group select:focus {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Focus shadow effect */
+    border-color: #333;
+}
+
+.form-group button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow */
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.form-group button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Default shadow */
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.tabs {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 10px; /* Adds spacing between the buttons */
+    margin-bottom: 20px; /* Adds spacing below the tabs */
+}
+
+
+.tabs button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f4f7fa;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Default shadow */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.tabs button:hover {
+    background-color: #e0e7ef;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hover shadow effect */
+}
+
+.tabs button.active {
+    background-color: #333;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Active shadow effect */
+}
+
+
+        .instruction {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Hide main tutor/budding tutor section by default */
+        .tutor-type {
+            display: none;
+        }
+        .budding-tutor{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <img src="static/img/image.jpg" alt="Logo" class="logo" >
+            <div>
+                <h1>Karpom Karpipom</h1>
+                <div class="maatram-foundation">Maatram Foundation</div>
+            </div>
+        </div>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('admission') }}">Admissions</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('signin') }}">Sign Up</a></li>
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sign In Form -->
+    <div class="signin-container">
+        <h2>Sign In</h2>
+        <div class="tabs">
+            <button class="active" id="student-tab">Student</button>
+            <button id="volunteer-tab">Volunteer</button>
+        </div>
+
+        <!-- Student Form -->
+        <form id="student-form" class="form" action="/signin" method="POST">
+            <input type="hidden" name="user_type" value="student">
+            <div class="form-group">
+                <label for="student-name">Name (IN BLOCK LETTERS with Initial in the back)</label>
+                <input type="text" id="student-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="kkid">KKID</label>
+                <input type="text" id="kkid" name="kkid" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="district">District(IN BLOCK LETTERS)</label>
+                <input type="text" id="district" name="district" required>
+            </div>
+            <div class="form-group">
+                <label for="school">School(IN BLOCK LETTERS)</label>
+                <input type="text" id="school" name="school" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail ID</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_number">Contact Number</label>
+                <input type="text" id="contact_number" name="contact_number" required>
+            </div>
+            <div class="form-group">
+                <label for="zone">Zone</label>
+                <select id="zone" name="zone" required>
+                    <option value="1">zone 1</option>
+                    <option value="2">zone 2</option>
+                    <option value="3">zone 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="medium">Select Medium</label>
+                <select id="medium" name="medium" required>
+                    <option value="Tamil">Tamil</option>
+                    <option value="English">English</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="subject">Subject</label>
+            <select name="subject" id="subject" required>
+                <option value="1" {% if subject == '1' %}selected{% endif %}>Mathematics</option>
+                <option value="2" {% if subject == '2' %}selected{% endif %}>Physics</option>
+                <option value="3" {% if subject == '3' %}selected{% endif %}>Chemistry</option>
+                <option value="4" {% if subject == '4' %}selected{% endif %}>Accountancy</option>
+                <option value="5" {% if subject == '5' %}selected{% endif %}>Commerce</option>
+            </select>
+        </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+
+        <!-- Volunteer Form -->
+        <form id="volunteer-form" class="form" action="/signin" method="POST" style="display: none;">
+            <input type="hidden" name="user_type" value="volunteer">
+            <div class="form-group">
+                <label for="volunteer-name">Name (IN BLOCK LETTERS with Initial in the back)</label>
+                <input type="text" id="volunteer-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="kkid">KKID</label>
+                <input type="text" id="kkid" name="kkid" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+            </div>
+            <div class="form-group">
+                <label for="volunteer_type">Volunteer Type</label>
+                <select id="volunteer_type" name="volunteer_type" required>
+                    <option value="tutor">tutor</option>
+                    <option value="assignment">assignment</option>
+                    <option value="test">test volunteer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject" required>
+                    {% for subject in subjects %}
+                        <option value="{{ subject.subject_id }}">{{ subject.subject_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail ID</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="contact_number">Contact Number</label>
+                <input type="text" id="contact_number" name="contact_number" required>
+            </div>
+            <div class="form-group">
+                <label for="zone">Zone</label>
+                <select id="zone" name="zone" required>
+                    <option value="1">zone 1</option>
+                    <option value="2">zone 2</option>
+                    <option value="3">zone 3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="medium">Select Medium</label>
+                <select id="medium" name="medium" required>
+                    <option value="Tamil">Tamil</option>
+                    <option value="English">English</option>
+                    <option value="Common">Common</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+
+        <div class="instruction">
+            <p>Note: Make sure to fill in your details correctly.</p>
+        </div>
+    </div>
+
+    <script>
+        const studentTab = document.getElementById('student-tab');
+        const volunteerTab = document.getElementById('volunteer-tab');
+        const studentForm = document.getElementById('student-form');
+        const volunteerForm = document.getElementById('volunteer-form');
+
+        studentTab.addEventListener('click', () => {
+            studentTab.classList.add('active');
+            volunteerTab.classList.remove('active');
+            studentForm.style.display = 'block';
+            volunteerForm.style.display = 'none';
+        });
+
+        volunteerTab.addEventListener('click', () => {
+            volunteerTab.classList.add('active');
+            studentTab.classList.remove('active');
+            studentForm.style.display = 'none';
+            volunteerForm.style.display = 'block';
+        });
+        volunteerTab.addEventListener('click', () => {
+            volunteerTab.classList.add('active');
+            studentTab.classList.remove('active');
+            studentForm.style.display = 'none';
+            volunteerForm.style.display = 'block';
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Profile</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .header-section {
+            width: 100%;
+            background: linear-gradient(135deg, #f9a825, #ffeb3b); /* Updated gradient */
+            padding: 20px 0;
+            text-align: center;
+        }
+        .header-section h1 {
+            color: #000; /* Updated text color */
+            font-size: 2.5rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .content-container {
+            margin: 50px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <h1>Volunteer Profile</h1>
+    </div>
+    <div class="content-container">
+        <p><strong>Name:</strong> {{ volunteer.name }}</p>
+        <p><strong>KKID:</strong> {{ volunteer.volunteers_kkid }}</p>
+        <p><strong>Date of Birth:</strong> {{ volunteer.dob }}</p>
+        <p><strong>Volunteer Type:</strong> {{ volunteer.volunteer_type }}</p>
+        <p><strong>Subject:</strong> {{ volunteer.subject }}</p>
+        <P><strong>E-Mail ID:</strong>{{volunteer.email}}</P>
+        <p><strong>Contact Number:</strong>{{volunteer.contact_number}}</p>
+        <p><strong>Medium:</strong> {{ volunteer.medium }}</p>
+        <p><strong>Zone:</strong> {{ volunteer.zone }}</p>
+    </div>
+</body>
+</html>
