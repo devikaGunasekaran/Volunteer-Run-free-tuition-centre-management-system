@@ -12,22 +12,15 @@ To simplify and digitize the daily functioning of our **free tuition NGO**, empo
 
 ## 📌 Key Features
 
-### 👩‍💼 Admin
-- Approves student applications
-- Creates user accounts for tutors and volunteers
-- Assigns roles and access rights
-
 ### 👨‍🎓 Student
-- Applies for tuition (admin approval needed)
-- Once approved, can:
-  - View attendance
-  - Check test marks and feedback
-  - View assignment status
-  - Update personal info
+- Applies for tuition 
+- View attendance
+- Check test marks and feedback
+- View assignment status
+- Update personal info
 
 ### 👨‍🏫 Tutor (Volunteer)
 - Marks attendance for assigned students
-- Enters marks for weekly tests
 - Tracks student progress
 
 ### 🧪 Test Volunteer
@@ -52,13 +45,13 @@ To simplify and digitize the daily functioning of our **free tuition NGO**, empo
 
 ## 🖼 Screenshots
  
-![](screenshots/Homepage.png)
+![Homepage](screenshots/Homepage.png)
 
 
-![](screenshots/Admission_status.png)
+![Admission status](screenshots/Admission_status.png)
 
 
-![](screenshots/Portion_completionstatus.png)
+![Portion completion status for everyweek](screenshots/Portion_completionstatus.png)
 
 ---
 ## 📬 Future Plans
