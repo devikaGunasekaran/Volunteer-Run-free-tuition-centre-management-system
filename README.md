@@ -49,5 +49,5 @@ SMS/email alerts for test results and attendance
 
 Upload/download feature for assignments
 
-<img src="Screenshots/Homepage.png" width="500">
+<img src="kk/screenshots/Homepage.png" width="500">
 
